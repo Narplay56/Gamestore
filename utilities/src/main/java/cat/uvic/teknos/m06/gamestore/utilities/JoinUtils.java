@@ -3,7 +3,7 @@
  */
 package cat.uvic.teknos.m06.gamestore.utilities;
 
-import cat.uvic.teknos.m06.gamestore.list.LinkedList;
+import cat.uvic.teknos.m06.gamestore.domain.LinkedList;
 
 class JoinUtils {
     public static String join(LinkedList source) {

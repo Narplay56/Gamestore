@@ -8,4 +8,4 @@
  */
 
 rootProject.name = 'gamestore'
-include('app', 'list', 'utilities')
+include('app', 'domain', 'utilities')

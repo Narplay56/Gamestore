@@ -3,7 +3,7 @@
  */
 package cat.uvic.teknos.m06.gamestore.app;
 
-import cat.uvic.teknos.m06.gamestore.list.LinkedList;
+import cat.uvic.teknos.m06.gamestore.domain.LinkedList;
 
 import static cat.uvic.teknos.m06.gamestore.utilities.StringUtils.join;
 import static cat.uvic.teknos.m06.gamestore.utilities.StringUtils.split;
