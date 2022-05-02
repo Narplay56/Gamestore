@@ -8,4 +8,7 @@ plugins {
 
 dependencies {
     api project(':domain')
+    implementation 'mysql:mysql-connector-java:8.0.28'
+    implementation group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-xml', version: '2.13.2'
+
 }

@@ -5,9 +5,11 @@ package cat.uvic.teknos.m06.gamestore.app;
 
 import cat.uvic.teknos.m06.gamestore.domain.LinkedList;
 
-import static cat.uvic.teknos.m06.gamestore.utilities.StringUtils.join;
+/*import static cat.uvic.teknos.m06.gamestore.utilities.StringUtils.join;
 import static cat.uvic.teknos.m06.gamestore.utilities.StringUtils.split;
 import static cat.uvic.teknos.m06.gamestore.app.MessageUtils.getMessage;
+
+ */
 
 import org.apache.commons.text.WordUtils;
 
@@ -40,5 +42,6 @@ public class App {
             }
             connection.commit();
         }
+
     }
 }

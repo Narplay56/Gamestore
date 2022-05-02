@@ -9,7 +9,7 @@ DROP TABLE if exists EMPLOYEES;
 DROP TABLE if exists ORDERS;
 
 
-CREATE TABLE EMPLOYEES(
+CREATE TABLE 'EMPLOYEES'(
 EMP_ID INT PRIMARY KEY,
 Full_name varchar(50) Not Null,
 Work_shift char(1) Null);
