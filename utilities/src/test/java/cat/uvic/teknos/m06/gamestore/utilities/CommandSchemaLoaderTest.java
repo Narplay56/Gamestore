@@ -4,16 +4,16 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class SingleLineCommandSchemaLoaderTest {
+class CommandSchemaLoaderTest {
 
     @Test
     void load() {
         var conectionProperties = new ConnectionProperties();
 
-        conectionProperties.setUrl("jdbc:mysql://localhost:3306/mysql");
+        conectionProperties.setUrl("jdbc:mysql://localhost:3306/gamestore");
         conectionProperties.setUsername("root");
 
-        var schemaLoader = new SingleLineCommandSchemaLoader("src/test/resources/", conectionProperties);
+        var schemaLoader = new CommandSchemaLoader("src/test/resources/schema.sql",conectionProperties);
 
         schemaLoader.load();
 

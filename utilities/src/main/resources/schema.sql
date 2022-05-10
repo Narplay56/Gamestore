@@ -1,3 +1,5 @@
+Drop database if exists gamestore;
+
 create database gamestore;
 
 use gamestore;
@@ -9,12 +11,10 @@ DROP TABLE if exists EMPLOYEES;
 DROP TABLE if exists ORDERS;
 
 
-CREATE TABLE 'EMPLOYEES'(
+CREATE TABLE EMPLOYEES(
 EMP_ID INT PRIMARY KEY,
 Full_name varchar(50) Not Null,
 Work_shift char(1) Null);
-
-desc employees;
 
 CREATE TABLE CUSTOMERS(
 Customer_id INT PRIMARY KEY,
@@ -29,7 +29,6 @@ Product_id INT PRIMARY KEY,
 Product_type varchar(20) Null,
 Product_name varchar(50) Not Null,
 Price decimal (3,2) Not Null);
-
 
 CREATE TABLE ORDERS(
 Order_id INT PRIMARY KEY,
