@@ -38,9 +38,10 @@ public class CommandSchemaLoader implements SchemaLoader {
                 }
                 comment += (char)r ;
                 if (comment== "/*"){
-                    while (comment.indexOf("/*")!= -1);
-                    r=inputStream.read();
-                    comment +=(char)r;
+                    while (comment.indexOf("/*")!= -1) {
+                        r = inputStream.read();
+                        comment += (char) r;
+                    }
                 }
                 while ((char)r != ';'){
                     command +=(char)r;
