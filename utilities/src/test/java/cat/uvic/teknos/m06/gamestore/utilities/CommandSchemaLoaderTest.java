@@ -1,5 +1,6 @@
 package cat.uvic.teknos.m06.gamestore.utilities;
 
+import cat.uvic.teknos.m06.gamestore.utilities.exceptions.SchemaLoaderException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -15,7 +16,21 @@ class CommandSchemaLoaderTest {
 
         var schemaLoader = new CommandSchemaLoader("src/test/resources/schema.sql",conectionProperties);
 
-        schemaLoader.load();
+        assertDoesNotThrow(() -> {
+            schemaLoader.load();
+        });
+    }
+    @Test
+    void loadError() {
+        var conectionProperties = new ConnectionProperties();
 
+        conectionProperties.setUrl("jdbc:mysql://localhost:3306/");
+        conectionProperties.setUsername("root");
+
+        var schemaLoader = new CommandSchemaLoader("src/test/resources/schemaerror.sql",conectionProperties);
+
+        assertThrows(SchemaLoaderException.class,() -> {
+            schemaLoader.load();
+        });
     }
 }
