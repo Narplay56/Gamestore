@@ -10,15 +10,12 @@ class CommandSchemaLoaderTest {
     void load() {
         var conectionProperties = new ConnectionProperties();
 
-        conectionProperties.setUrl("jdbc:mysql://localhost:3306/gamestore");
+        conectionProperties.setUrl("jdbc:mysql://localhost:3306/");
         conectionProperties.setUsername("root");
 
         var schemaLoader = new CommandSchemaLoader("src/test/resources/schema.sql",conectionProperties);
 
         schemaLoader.load();
 
-        assertDoesNotThrow(() -> {
-            schemaLoader.load();
-        });
     }
 }

@@ -3,13 +3,19 @@ Drop database if exists gamestore;
 create database gamestore;
 
 use gamestore;
-
+/*
+ * Comentario en varias líneas.
+ * Compatible con el estándar SQL99
+ */
 DROP TABLE if exists CUSTOMERS;
-DROP TABLE if exists PRODUCTS;
-DROP TABLE if exists SHIPMENTS;
-DROP TABLE if exists EMPLOYEES;
-DROP TABLE if exists ORDERS;
 
+DROP TABLE if exists PRODUCTS;
+
+DROP TABLE if exists SHIPMENTS;
+
+DROP TABLE if exists EMPLOYEES;
+
+DROP TABLE if exists ORDERS;
 
 CREATE TABLE EMPLOYEES(
 EMP_ID INT PRIMARY KEY,
@@ -23,7 +29,10 @@ Postcode int(5) Not Null,
 EMP_ID int,
 index(EMP_ID),
 foreign key(EMP_ID) references Employees(EMP_ID));
-
+/*
+ * Comentario en varias líneas.
+ * Compatible con el estándar SQL99
+ */
 CREATE TABLE PRODUCTS(
 Product_id INT PRIMARY KEY,
 Product_type varchar(20) Null,
