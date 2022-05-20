@@ -4,17 +4,22 @@ import cat.uvic.teknos.m06.gamestore.domain.Exceptions.RepositoryException;
 import cat.uvic.teknos.m06.gamestore.domain.models.Customer;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
-public class CustomerRepository {
-    private static final String INSERT = "insert into customer values (?,?,?,?)";
-    private static final String UPDATE = "update customer {name} set values (?)";
+public class CustomerRepository implements Repository<Customer,Integer > {
+    private static final String INSERT = "insert into customers values (?,?,?,?)";
+    private static final String UPDATE = "update customers set name = ?, set Email = ?, set where id = ?";
+    private static final String SELECT_ALL = "select customer_id, name, email, postcode, EMP_ID from customers";
+    private static final String SELECT = "select customer_id, name, email, postcode, EMP_ID from customers where id = ?";
+    private static final String DELETE = "DELETE FROM customers WHERE customer_id = ? ";
     private final Connection connection;
+
 
     public CustomerRepository(Connection connection){this.connection =  connection;}
 
+    @Override
     public void save(Customer customer){
         if (customer == null)
             throw new RepositoryException("The customer is null!");
@@ -24,37 +29,58 @@ public class CustomerRepository {
             update(customer);
     }
     private void insert(Customer customer){
-        try {
-            var prepared  = connection.prepareStatement(INSERT);
-            prepared.setInt(1, customer.getCustomerId());
-            prepared.setString(2, customer.getEmail());
-            prepared.setInt(3, customer.getPostcode());
-            prepared.setInt(4, customer.getEmpID());
+        try(var prepared = connection.prepareStatement(INSERT)){
+            prepared.setString(1,customer.getName());
             prepared.executeUpdate();
-            prepared.close();
+            var generatedKeysResultSet = prepared.getGeneratedKeys();
+            if (!generatedKeysResultSet.next()) {
+                throw new RepositoryException("Exception while inserting: id not generated" + customer);
+            }
+            customer.setCustomerId(generatedKeysResultSet.getInt(1));
         } catch (SQLException e) {
-            throw new RepositoryException(e);
+            throw new RepositoryException("Exception while inserting: " + customer, e);
         }
     }
     private void update(Customer customer){
         try {
             var prepared  = connection.prepareStatement(UPDATE);
-            prepared.setInt(1, customer.getCustomerId());
+             prepared.setInt(1, customer.getCustomerId());
             prepared.setString(2, customer.getEmail());
             prepared.setInt(3, customer.getPostcode());
             prepared.setInt(4, customer.getEmpID());
             prepared.executeUpdate();
             prepared.close();
         } catch (SQLException e) {
-            throw new RepositoryException(e);
+            throw new RepositoryException("Exception while updating: " + customer, e);
         }
 
     }
+
+    @Override
     public void delete (Customer customer){
 
     }
-    public List<Customer> getAll(){
+
+    @Override
+    public Customer getById(Integer id) {
         return null;
     }
 
+    @Override
+    public List<Customer> getAll() {
+        var musicalGenres = new ArrayList<Customer>();
+        try (var statement = connection.createStatement()) {
+            var resultSet = statement.executeQuery(SELECT_ALL);
+            while (resultSet.next()) {
+                var customer = new Customer();
+                customer.setCustomerId(resultSet.getInt("customer_id"));
+                customer.setName(resultSet.getString("name"));
+                musicalGenres.add(customer);
+            }
+            return musicalGenres;
+        } catch (SQLException e) {
+            throw new RepositoryException("Exception while executing get all", e);
+        }
+
+    }
 }

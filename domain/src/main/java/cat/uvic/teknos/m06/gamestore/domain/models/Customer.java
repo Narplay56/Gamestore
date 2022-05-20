@@ -2,6 +2,7 @@ package cat.uvic.teknos.m06.gamestore.domain.models;
 
 public class Customer {
     private int CustomerId;
+    private String Name;
     private String Email;
     private int Postcode;
     private int EmpID;
@@ -12,6 +13,14 @@ public class Customer {
 
     public void setCustomerId(int customerId) {
         CustomerId = customerId;
+    }
+
+    public String getName() {
+        return Name;
+    }
+
+    public void setName(String name) {
+        Name = name;
     }
 
     public String getEmail() {

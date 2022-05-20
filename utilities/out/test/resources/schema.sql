@@ -24,6 +24,7 @@ Work_shift char(1) Null);
 
 CREATE TABLE CUSTOMERS(
 Customer_id INT PRIMARY KEY,
+Name varchar(20),
 Email varchar(50) Not Null,
 Postcode int(5) Not Null,
 EMP_ID int,

@@ -23,7 +23,8 @@ Full_name varchar(50) Not Null,
 Work_shift char(1) Null);
 
 CREATE TABLE CUSTOMERS(
-Customer_id INT PRIMARY KEY,
+Customer_id INT Auto_Increment PRIMARY KEY ,
+Name varchar(20),
 Email varchar(50) Not Null,
 Postcode int(5) Not Null,
 EMP_ID int,
