@@ -75,6 +75,9 @@ public class CustomerRepository implements Repository<Customer,Integer > {
                 var customer = new Customer();
                 customer.setCustomerId(resultSet.getInt("customer_id"));
                 customer.setName(resultSet.getString("name"));
+                customer.setEmail(resultSet.getString("Email"));
+                customer.setPostcode(resultSet.getInt("postcode"));
+                customer.setPostcode(resultSet.getInt("EMP_ID"));
                 musicalGenres.add(customer);
             }
             return musicalGenres;
