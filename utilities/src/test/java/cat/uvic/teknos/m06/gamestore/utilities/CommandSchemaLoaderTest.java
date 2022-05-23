@@ -1,5 +1,6 @@
 package cat.uvic.teknos.m06.gamestore.utilities;
 
+import cat.uvic.teknos.m06.gamestore.domain.models.Employee;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

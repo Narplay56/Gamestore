@@ -3,7 +3,7 @@ package cat.uvic.teknos.m06.gamestore.domain.models;
 public class Employee {
     private int EmpId;
     private String name;
-    private char WorkShift;
+    private String WorkShift;
 
     public int getEmpId() {
         return EmpId;
@@ -21,11 +21,11 @@ public class Employee {
         this.name = name;
     }
 
-    public char getWorkShift() {
+    public String getWorkShift() {
         return WorkShift;
     }
 
-    public void setWorkShift(char workShift) {
+    public void setWorkShift(String workShift) {
         WorkShift = workShift;
     }
 }
