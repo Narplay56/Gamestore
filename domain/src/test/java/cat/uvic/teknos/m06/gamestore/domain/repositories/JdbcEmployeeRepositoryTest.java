@@ -12,9 +12,17 @@ class JdbcEmployeeRepositoryTest {
 
     @Test
     void save() throws SQLException {
-        var connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/","root", null);
-        var con = new JdbcEmployeeRepository(connection);
-
+        var connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/gamestore","root", null);
+        var jdbcEmployeeRepository = new JdbcEmployeeRepository(connection);
+        jdbcEmployeeRepository.getAll();
+//        employee.setName("Anna Pache");
+//        employee.setEmpId(9);
+//        employee.setWorkShift("M");
+//        jdbcEmployeeRepository.save(employee);
+        Employee employee = jdbcEmployeeRepository.getById(9);
+        System.out.println(employee.getName()
+        );
+        // jdbcEmployeeRepository.delete(employee);
     }
 
 }

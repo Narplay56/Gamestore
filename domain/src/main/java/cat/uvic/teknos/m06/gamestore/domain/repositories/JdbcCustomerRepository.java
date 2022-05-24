@@ -56,7 +56,6 @@ public class JdbcCustomerRepository implements Repository<Customer,Integer > {
 
     }
 
-    @Override
     public void delete (Customer customer){
         try(var preparedStatement = connection.prepareStatement(DELETE)){
             preparedStatement.setInt(1,customer.getCustomerId());
