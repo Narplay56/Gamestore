@@ -6,6 +6,7 @@ import cat.uvic.teknos.m06.gamestore.domain.models.Employee;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,7 +31,7 @@ public class JdbcEmployeeRepository implements Repository<Employee,Integer > {
             update(employee);
     }
     private void insert(Employee employee){
-        try(var prepared = connection.prepareStatement(INSERT)){
+        try(var prepared = connection.prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS)){
             prepared.setString(1,employee.getName());
             prepared.setString(2, employee.getWorkShift());
             prepared.executeUpdate();

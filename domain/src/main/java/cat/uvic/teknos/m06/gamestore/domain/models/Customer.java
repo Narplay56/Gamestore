@@ -1,6 +1,13 @@
 package cat.uvic.teknos.m06.gamestore.domain.models;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class Customer {
+    @Id
+    @GeneratedValue
     private int CustomerId;
     private String Name;
     private String Email;
