@@ -12,7 +12,7 @@ class JdbcEmployeeRepositoryTest {
 
     @Test
     void save() throws SQLException {
-        var connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/gamestore","root", null);
+        var connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/gamestore", "root", null);
         var jdbcEmployeeRepository = new JdbcEmployeeRepository(connection);
         Employee employee = new Employee();
         employee.setName("Matias Lazo");
@@ -29,4 +29,25 @@ class JdbcEmployeeRepositoryTest {
         // jdbcEmployeeRepository.delete(employee);
     }
 
+    @Test
+    void saveUp() throws SQLException {
+        var connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/gamestore", "root", null);
+        var jdbcEmployeeRepository = new JdbcEmployeeRepository(connection);
+        Employee employee = new Employee();
+        employee.setName("Johan Liebheart");
+        employee.setWorkShift("M");
+        employee.setEmpId(1);
+        jdbcEmployeeRepository.save(employee);
+
+    }
+
+    @Test
+    void Delete()throws SQLException {
+        var connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/gamestore", "root", null);
+        var jdbcEmployeeRepository = new JdbcEmployeeRepository(connection);
+        Employee employee = new Employee();
+        employee.setEmpId(2);
+        jdbcEmployeeRepository.delete(employee);
+
+    }
 }
