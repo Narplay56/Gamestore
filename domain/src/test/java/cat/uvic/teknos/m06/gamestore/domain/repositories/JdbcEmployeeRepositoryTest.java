@@ -9,14 +9,13 @@ import java.sql.SQLException;
 import static org.junit.jupiter.api.Assertions.*;
 
 class JdbcEmployeeRepositoryTest {
-
     @Test
     void saveInsert() throws SQLException {
         var connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/gamestore","root", null);
         var jdbcEmployeeRepository = new JdbcEmployeeRepository(connection);
         Employee employee = new Employee();
         employee.setName("Matias Lazo");
-        employee.setWorkShift("N");
+        employee.setWorkShift("M");
         jdbcEmployeeRepository.save(employee);
     }
     @Test

@@ -55,3 +55,5 @@ company varchar(30) Null,
 Order_id int ,
 Index(Order_id),
 foreign key (Order_id) references ORDERS(Order_id));
+
+ALTER TABLE Employees AUTO_INCREMENT = 1;
