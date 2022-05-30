@@ -11,22 +11,45 @@ import static org.junit.jupiter.api.Assertions.*;
 class JdbcEmployeeRepositoryTest {
 
     @Test
-    void save() throws SQLException {
+    void saveInsert() throws SQLException {
         var connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/gamestore","root", null);
         var jdbcEmployeeRepository = new JdbcEmployeeRepository(connection);
         Employee employee = new Employee();
         employee.setName("Matias Lazo");
         employee.setWorkShift("N");
         jdbcEmployeeRepository.save(employee);
-//        jdbcEmployeeRepository.getAll();
-//        employee.setName("Anna Pache");
-//        employee.setEmpId(9);
-//        employee.setWorkShift("M");
-//        jdbcEmployeeRepository.save(employee);
-//        Employee employee = jdbcEmployeeRepository.getById(9);
-//        System.out.println(employee.getName()
-//        );
-        // jdbcEmployeeRepository.delete(employee);
     }
+    @Test
+    void saveUpdate() throws SQLException {
+        var connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/gamestore","root", null);
+        var jdbcEmployeeRepository = new JdbcEmployeeRepository(connection);
+        Employee employee = new Employee();
+        employee.setName("Johan Liebheart");
+        employee.setWorkShift("N");
+        employee.setEmpId(1);
+        jdbcEmployeeRepository.save(employee);
+    }
+    @Test
+    void select() throws SQLException {
+        var connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/gamestore","root", null);
+        var jdbcEmployeeRepository = new JdbcEmployeeRepository(connection);
+        assertTrue(jdbcEmployeeRepository.getById(1) != null);
+    }
+
+    @Test
+    void delete() throws SQLException {
+        var connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/gamestore","root", null);
+        var jdbcEmployeeRepository = new JdbcEmployeeRepository(connection);
+        Employee employee = new Employee();
+        employee.setEmpId(1);
+        jdbcEmployeeRepository.delete(employee);
+    }
+    @Test
+    void getAll() throws SQLException {
+        var connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/gamestore","root", null);
+        var jdbcEmployeeRepository = new JdbcEmployeeRepository(connection);
+        assertTrue( jdbcEmployeeRepository.getAll() != null);
+    }
+
 
 }
