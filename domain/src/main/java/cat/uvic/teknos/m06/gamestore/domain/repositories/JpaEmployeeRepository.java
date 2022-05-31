@@ -24,12 +24,20 @@ public class JpaEmployeeRepository implements EmployeeRepository {
         if (employee.getEmpId() <= 0){
             insert(employee);
         }
-
+        else{
+            update(employee);
+        }
     }
     private void insert(Employee employee){
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
         entityManager.persist(employee);
+        entityManager.getTransaction().commit();
+    }
+    private void update(Employee employee){
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        entityManager.getTransaction().begin();
+        entityManager.merge(employee);
         entityManager.getTransaction().commit();
     }
 

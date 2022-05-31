@@ -1,7 +1,6 @@
 package cat.uvic.teknos.m06.gamestore.domain.repositories;
 
 import cat.uvic.teknos.m06.gamestore.domain.Exceptions.RepositoryException;
-import cat.uvic.teknos.m06.gamestore.domain.models.Customer;
 import cat.uvic.teknos.m06.gamestore.domain.models.Employee;
 
 import java.sql.Connection;
@@ -13,7 +12,7 @@ import java.util.List;
 public class JdbcEmployeeRepository implements Repository<Employee,Integer > {
     private static final String INSERT = "insert into employees (Full_name,Work_shift) values (?,?)";
     private static final String UPDATE = "update employees set Full_name = ?, Work_shift = ? where EMP_ID = ?";
-    private static final String SELECT_ALL = "select * from customers";
+    private static final String SELECT_ALL = "select * from employees";
     private static final String SELECT = "select * from employees where EMP_ID = ?";
     private static final String DELETE = "DELETE FROM employees WHERE emp_id = ? ";
     private final Connection connection;
@@ -50,16 +49,15 @@ public class JdbcEmployeeRepository implements Repository<Employee,Integer > {
             prepared.setString(1, employee.getName());
             prepared.setString(2, employee.getWorkShift());
             prepared.setInt(3, employee.getEmpId());
-            System.out.println(prepared);
             prepared.executeUpdate();
         } catch (SQLException e) {
             throw new RepositoryException("Exception while updating: " + employee, e);
         }
     }
     @Override
-    public void delete (Employee customer){
+    public void delete (Employee employee){
         try(var preparedStatement = connection.prepareStatement(DELETE)){
-            preparedStatement.setInt(1,customer.getEmpId());
+            preparedStatement.setInt(1,employee.getEmpId());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RepositoryException("Exception while trying to delete", e);

@@ -1,6 +1,6 @@
 package cat.uvic.teknos.m06.gamestore.domain.models;
 
-public class Shipments {
+public class Shipment {
     private int ShipmentID;
     private String company;
     private int OrderId;
