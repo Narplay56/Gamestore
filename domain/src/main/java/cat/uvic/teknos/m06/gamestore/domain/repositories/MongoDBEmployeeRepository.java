@@ -17,7 +17,7 @@ public class MongoDBEmployeeRepository implements EmployeeRepository {
     }
 
     @Override
-    public void delete(Employee model) {
+    public void delete(Integer id) {
 
     }
 

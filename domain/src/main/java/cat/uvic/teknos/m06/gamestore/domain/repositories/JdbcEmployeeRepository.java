@@ -55,9 +55,9 @@ public class JdbcEmployeeRepository implements Repository<Employee,Integer > {
         }
     }
     @Override
-    public void delete (Employee employee){
+    public void delete (Integer id){
         try(var preparedStatement = connection.prepareStatement(DELETE)){
-            preparedStatement.setInt(1,employee.getEmpId());
+            preparedStatement.setInt(1,id);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RepositoryException("Exception while trying to delete", e);

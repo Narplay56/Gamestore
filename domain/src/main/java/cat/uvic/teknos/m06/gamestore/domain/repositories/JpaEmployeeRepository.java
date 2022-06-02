@@ -42,17 +42,30 @@ public class JpaEmployeeRepository implements EmployeeRepository {
     }
 
     @Override
-    public void delete(Employee model) {
+    public void delete(Integer id) {
+        var entityManager = entityManagerFactory.createEntityManager();
+        entityManager.getTransaction().begin();
+        var employee = entityManager.find(Employee.class, id);
+        if (employee != null) {
+            entityManager.remove(employee);
+        }
+        entityManager.getTransaction().commit();
 
     }
 
     @Override
     public Employee getById(Integer id) {
-        return null;
+        var entityManager = entityManagerFactory.createEntityManager();
+        var employee = entityManager.find(Employee.class, id);
+        entityManager.close();
+
+        return employee;
     }
 
     @Override
     public List<Employee> getAll() {
-        return null;
+        var entityManager = entityManagerFactory.createEntityManager();
+        var query = entityManager.createQuery("SELECT employee FROM Employee employee");
+        return query.getResultList();
     }
 }

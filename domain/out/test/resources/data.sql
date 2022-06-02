@@ -1,0 +1,1 @@
+insert into employee (WorkShift, name) values ("M","Matias"),("N","Pere"), ("M" , "Selena");

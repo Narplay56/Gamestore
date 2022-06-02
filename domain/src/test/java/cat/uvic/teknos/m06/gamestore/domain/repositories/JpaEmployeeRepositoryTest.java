@@ -11,12 +11,15 @@ import javax.persistence.Persistence;
 import static org.junit.jupiter.api.Assertions.*;
 
 class JpaEmployeeRepositoryTest {
+    public static final int MODEL_TO_DELETE = 2;
     private static EntityManagerFactory entityManagerFactory;
     private static Repository <Employee, Integer> repository;
 
     @BeforeAll
     static void setUp() {
        entityManagerFactory = Persistence.createEntityManagerFactory("gamestart-mysql");
+       repository = new JpaEmployeeRepository(entityManagerFactory);
+
     }
     @Test
     void  save(){
@@ -35,6 +38,7 @@ class JpaEmployeeRepositoryTest {
     @Test
     void  saveUpdate(){
         Employee employee = new Employee();
+        employee.setEmpId(1);
         employee.setName("Johan Liebheart");
         employee.setWorkShift("N");
 
@@ -45,14 +49,41 @@ class JpaEmployeeRepositoryTest {
 
         assertTrue(employee.getEmpId() > 0);
 
+        var entityManager = entityManagerFactory.createEntityManager();
+        var modifiedEmployee = entityManager.find(Employee.class,1 );
+
+        assertEquals("Johan Liebheart", modifiedEmployee.getName());
+        assertEquals("N", modifiedEmployee.getWorkShift());
+        entityManager.close();
+
     }
     @Test
     void delete(){
+        var pere = repository.getById(MODEL_TO_DELETE);
+
+        assertNotNull(pere);
+
+        assertDoesNotThrow(() -> {
+            repository.delete(MODEL_TO_DELETE);
+        });
+
+        pere = repository.getById(MODEL_TO_DELETE);
+
+        assertNull(pere);
 
     }
     @Test
-    void getByid(){}
+    void getByid(){
+            var employee = repository.getById(1);
+
+            assertNotNull(employee);
+    }
 
     @Test
-    void getAll(){}
+    void getAll(){
+        var employees = repository.getAll();
+
+        assertNotNull(employees);
+        assertTrue(employees.size() > 0);
+    }
 }

@@ -56,9 +56,9 @@ public class JdbcProductRepository implements Repository<Product,Integer > {
         }
     }
     @Override
-    public void delete (Product product){
+    public void delete (Integer id){
         try(var preparedStatement = connection.prepareStatement(DELETE)){
-            preparedStatement.setInt(1,product.getProductId());
+            preparedStatement.setInt(1,id);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RepositoryException("Exception while trying to delete", e);

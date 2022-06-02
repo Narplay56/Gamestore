@@ -60,9 +60,9 @@ public class JdbcCustomerRepository implements Repository<Customer,Integer > {
 
     }
 
-    public void delete (Customer customer){
+    public void delete (Integer id){
         try(var preparedStatement = connection.prepareStatement(DELETE)){
-            preparedStatement.setInt(1,customer.getCustomerId());
+            preparedStatement.setInt(1,id);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RepositoryException("Exception while trying to delete", e);

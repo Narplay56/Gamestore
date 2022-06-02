@@ -10,13 +10,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class JdbcEmployeeRepositoryTest {
     @Test
-<<<<<<< HEAD
-    void save() throws SQLException {
-        var connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/gamestore", "root", null);
-=======
     void saveInsert() throws SQLException {
         var connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/gamestore","root", null);
->>>>>>> a3ed666d7b385815c568662ed213b04c8951de7d
         var jdbcEmployeeRepository = new JdbcEmployeeRepository(connection);
         Employee employee = new Employee();
         employee.setName("Matias Lazo");
@@ -41,7 +36,6 @@ class JdbcEmployeeRepositoryTest {
     }
 
     @Test
-<<<<<<< HEAD
     void saveUp() throws SQLException {
         var connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/gamestore", "root", null);
         var jdbcEmployeeRepository = new JdbcEmployeeRepository(connection);
@@ -54,21 +48,11 @@ class JdbcEmployeeRepositoryTest {
     }
 
     @Test
-    void Delete()throws SQLException {
+    void delete()throws SQLException {
         var connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/gamestore", "root", null);
         var jdbcEmployeeRepository = new JdbcEmployeeRepository(connection);
-        Employee employee = new Employee();
-        employee.setEmpId(2);
-        jdbcEmployeeRepository.delete(employee);
+        jdbcEmployeeRepository.delete(2);
 
-    }
-=======
-    void delete() throws SQLException {
-        var connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/gamestore","root", null);
-        var jdbcEmployeeRepository = new JdbcEmployeeRepository(connection);
-        Employee employee = new Employee();
-        employee.setEmpId(1);
-        jdbcEmployeeRepository.delete(employee);
     }
     @Test
     void getAll() throws SQLException {
@@ -76,7 +60,4 @@ class JdbcEmployeeRepositoryTest {
         var jdbcEmployeeRepository = new JdbcEmployeeRepository(connection);
         assertTrue( jdbcEmployeeRepository.getAll() != null);
     }
-
-
->>>>>>> a3ed666d7b385815c568662ed213b04c8951de7d
 }

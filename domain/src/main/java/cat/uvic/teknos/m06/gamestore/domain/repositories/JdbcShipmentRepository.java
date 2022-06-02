@@ -55,9 +55,9 @@ public class JdbcShipmentRepository implements Repository<Shipment,Integer > {
         }
     }
     @Override
-    public void delete (Shipment shipment){
+    public void delete (Integer id){
         try(var preparedStatement = connection.prepareStatement(DELETE)){
-            preparedStatement.setInt(1,shipment.getShipmentID());
+            preparedStatement.setInt(1,id);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RepositoryException("Exception while trying to delete", e);
