@@ -3,6 +3,7 @@ package cat.uvic.teknos.m06.gamestore.domain.models;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 @Entity
 public class Customer {
@@ -12,6 +13,7 @@ public class Customer {
     private String Name;
     private String Email;
     private int Postcode;
+    @Transient
     private int EmpID;
 
     public int getCustomerId() {
