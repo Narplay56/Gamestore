@@ -1,6 +1,5 @@
 package cat.uvic.teknos.m06.gamestore.domain.repositories;
 
-import cat.uvic.teknos.m06.gamestore.domain.models.Customer;
 import cat.uvic.teknos.m06.gamestore.domain.models.Product;
 
 import javax.persistence.EntityManager;

@@ -2,8 +2,6 @@ package cat.uvic.teknos.m06.gamestore.domain.repositories;
 
 import cat.uvic.teknos.m06.gamestore.domain.Exceptions.RepositoryException;
 import cat.uvic.teknos.m06.gamestore.domain.models.Customer;
-import cat.uvic.teknos.m06.gamestore.domain.models.Employee;
-
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
