@@ -5,6 +5,7 @@
 
         <class>cat.uvic.teknos.m06.gamestore.domain.models.Employee</class>
         <class> cat.uvic.teknos.m06.gamestore.domain.models.Customer</class>
+        <class> cat.uvic.teknos.m06.gamestore.domain.models.Product</class>
 
         <properties>
             <!--<property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.ClientDriver" />-->

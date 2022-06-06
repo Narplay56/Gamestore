@@ -1,36 +1,37 @@
 package cat.uvic.teknos.m06.gamestore.domain.repositories;
 
 import cat.uvic.teknos.m06.gamestore.domain.models.Customer;
+import cat.uvic.teknos.m06.gamestore.domain.models.Product;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import java.util.List;
 
-public class JpaCustomerRepository implements Repository<Customer, Integer>{
+public class JpaProductRepository implements Repository<Product, Integer>{
     private final EntityManagerFactory entityManagerFactory;
 
-    public JpaCustomerRepository(EntityManagerFactory entityManagerFactory){
+    public JpaProductRepository(EntityManagerFactory entityManagerFactory){
         this.entityManagerFactory = entityManagerFactory;
     }
     @Override
-    public void save(Customer customer) {
-        if (customer.getCustomerId() <= 0){
-            insert(customer);
+    public void save(Product product) {
+        if (product.getProductId() <= 0){
+            insert(product);
         }
         else{
-            update(customer);
+            update(product);
         }
     }
-    private void insert(Customer customer){
+    private void insert(Product product){
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
-        entityManager.persist(customer);
+        entityManager.persist(product);
         entityManager.getTransaction().commit();
     }
-    private void update(Customer customer){
+    private void update(Product product){
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
-        entityManager.merge(customer);
+        entityManager.merge(product);
         entityManager.getTransaction().commit();
     }
 
@@ -38,27 +39,27 @@ public class JpaCustomerRepository implements Repository<Customer, Integer>{
     public void delete(Integer id) {
         var entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
-        var customer = entityManager.find(Customer.class, id);
-        if (customer != null) {
-            entityManager.remove(customer);
+        var product = entityManager.find(Product.class, id);
+        if (product != null) {
+            entityManager.remove(product);
         }
         entityManager.getTransaction().commit();
 
     }
 
     @Override
-    public Customer getById(Integer id) {
+    public Product getById(Integer id) {
         var entityManager = entityManagerFactory.createEntityManager();
-        var customer = entityManager.find(Customer.class, id);
+        var product = entityManager.find(Product.class, id);
         entityManager.close();
 
-        return customer;
+        return product;
     }
 
     @Override
-    public List<Customer> getAll() {
+    public List<Product> getAll() {
         var entityManager = entityManagerFactory.createEntityManager();
-        var query = entityManager.createQuery("SELECT customer FROM Customer customer");
+        var query = entityManager.createQuery("SELECT product FROM Product product");
         return query.getResultList();
     }
 }
