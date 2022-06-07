@@ -1,14 +1,11 @@
 package cat.uvic.teknos.m06.gamestore.domain.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Transient;
+import javax.persistence.*;
 
 @Entity
 public class Shipment {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int ShipmentID;
     private String company;
     @Transient
